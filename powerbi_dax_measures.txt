@@ -1,0 +1,12 @@
+Total Sales = SUM(retail_sales[Sales])
+Total Profit = SUM(retail_sales[Profit])
+Total Orders = DISTINCTCOUNT(retail_sales[OrderID])
+Total Customers = DISTINCTCOUNT(retail_sales[CustomerID])
+Units Sold = SUM(retail_sales[Quantity])
+Profit Margin % = DIVIDE([Total Profit], [Total Sales], 0)
+Average Order Value = DIVIDE([Total Sales], [Total Orders], 0)
+Sales LY = CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Calendar'[Date]))
+Sales YoY % = DIVIDE([Total Sales] - [Sales LY], [Sales LY], 0)
+Profit YoY % =
+VAR PriorProfit = CALCULATE([Total Profit], SAMEPERIODLASTYEAR('Calendar'[Date]))
+RETURN DIVIDE([Total Profit] - PriorProfit, PriorProfit, 0)
